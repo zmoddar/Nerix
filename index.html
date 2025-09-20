@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nerix Cheats Store</title>
+  <script src="https://cdn.jsdelivr.net/npm/react@18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@babel/standalone@7.22.9/babel.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+  </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-[#7a6ded] to-[#d869d0] text-white">
+  <div id="root"></div>
+  <script type="text/babel">
+    const TwitterIcon = () => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="transform transition-transform hover:scale-110">
+        <path fill="#ffffff" d="M17.751 3h3.067l-6.7 7.625L22 21h-6.172l-4.833-6.293L5.464 21h-3.07l7.167-8.155L2 3h6.328l4.37 5.752zm-1.076 16.172h1.7L7.404 4.732H5.58z"/>
+      </svg>
+    );
+
+    const DiscordIcon = () => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" className="transform transition-transform hover:scale-110">
+        <path fill="#ffffff" d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515a.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0a12.64 12.64 0 0 0-.617-1.25a.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057a19.9 19.9 0 0 0 5.993 3.03a.078.078 0 0 0 .084-.028a14.09 14.09 0 0 0 1.226-1.994a.076.076 0 0 0-.041-.106a13.107 13.107 0 0 1-1.872-.892a.077.077 0 0 1-.008-.128a10.2 10.2 0 0 0 .372-.292a.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127a12.299 12.299 0 0 1-1.873.892a.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028a19.839 19.839 0 0 0 6.002-3.03a.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.956-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419c0-1.333.955-2.419 2.157-2.419c1.21 0 2.176 1.096 2.157 2.42c0 1.333-.946 2.418-2.157 2.418Z"/>
+      </svg>
+    );
+
+    const CartIcon = () => (
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 640 640" className="transform transition-transform hover:scale-110">
+        <path fill="#ffffff" d="M24 48C10.7 48 0 58.7 0 72C0 85.3 10.7 96 24 96L69.3 96C73.2 96 76.5 98.8 77.2 102.6L129.3 388.9C135.5 423.1 165.3 448 200.1 448L456 448C469.3 448 480 437.3 480 424C480 410.7 469.3 400 456 400L200.1 400C188.5 400 178.6 391.7 176.5 380.3L171.4 352L475 352C505.8 352 532.2 330.1 537.9 299.8L568.9 133.9C572.6 114.2 557.5 96 537.4 96L124.7 96L124.3 94C119.5 67.4 96.3 48 69.2 48L24 48zM208 576C234.5 576 256 554.5 256 528C256 501.5 234.5 480 208 480C181.5 480 160 501.5 160 528C160 554.5 181.5 576 208 576zM432 576C458.5 576 480 554.5 480 528C480 501.5 458.5 480 432 480C405.5 480 384 501.5 384 528C384 554.5 405.5 576 432 576z"/>
+      </svg>
+    );
+
+    const ProductCard = ({ name, description, price, discount, image }) => {
+      const discountedPrice = discount ? (price * (1 - discount / 100)).toFixed(2) : null;
+      return (
+        <div className="bg-white/10 backdrop-blur-md rounded-lg p-4 flex flex-col items-center w-full max-w-sm transform transition-transform hover:scale-105 hover:shadow-xl">
+          <img src={image || "product.jpg"} alt={name} className="w-full h-40 object-cover rounded-md mb-4"/>
+          <h3 className="text-xl font-bold tracking-tight">{name}</h3>
+          <p className="text-sm text-gray-300 mb-2 text-center">{description}</p>
+          <div className="flex items-center mb-2">
+            {discount ? (
+              <>
+                <span className="text-lg line-through text-red-500 mr-2">${price.toFixed(2)}</span>
+                <span className="text-lg font-bold">${discountedPrice}</span>
+                <span className="ml-2 text-sm bg-clip-text text-transparent bg-gradient-to-r from-red-500 to-white animate-pulse">
+                  {discount}% OFF
+                </span>
+              </>
+            ) : (
+              <span className="text-lg font-bold">${price.toFixed(2)}</span>
+            )}
+          </div>
+          <a href="https://discord.gg/nerix" className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition-colors">Buy Now</a>
+        </div>
+      );
+    };
+
+    const FAQItem = ({ question, answer }) => {
+      const [isOpen, setIsOpen] = React.useState(false);
+      return (
+        <div className="bg-white/10 backdrop-blur-md rounded-lg mb-4 p-4">
+          <button
+            className="w-full text-left text-lg font-semibold flex justify-between items-center"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {question}
+            <span className="transform transition-transform duration-300">{isOpen ? '−' : '+'}</span>
+          </button>
+          {isOpen && <p className="mt-2 text-gray-300">{answer}</p>}
+        </div>
+      );
+    };
+
+    const App = () => {
+      return (
+        <div className="flex flex-col min-h-screen">
+          <header className="bg-white/10 backdrop-blur-md sticky top-0 z-10 py-4 shadow-sm">
+            <div className="container mx-auto px-4 flex justify-between items-center">
+              <div className="flex items-center">
+                <a href="/" className="flex items-center">
+                  <img src="nerix.png" alt="Logo" className="mr-2"/>
+                  <span className="text-2xl font-bold tracking-tight">Nerix</span>
+                </a>
+              </div>
+              <a href="/store"><CartIcon /></a>
+            </div>
+          </header>
+
+          <main className="container mx-auto px-4 py-8 flex-grow">
+            <section id="store" className="mb-12">
+              <h2 className="text-4xl font-bold mb-6 text-center tracking-tight">Our Products</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <ProductCard
+                  name="Cheat Package 1"
+                  description="Enhance your gameplay with this premium cheat package."
+                  price={29.99}
+                  discount={20}
+                  image="product.jpg"
+                />
+                <ProductCard
+                  name="Cheat Package 2"
+                  description="Advanced features for competitive players."
+                  price={49.99}
+                  image="product2.jpg"
+                />
+                <ProductCard
+                  name="Cheat Package 3"
+                  description="Ultimate bundle for pro players."
+                  price={79.99}
+                  discount={15}
+                  image="product.jpg"
+                />
+                <ProductCard
+                  name="Cheat Package 4"
+                  description="Exclusive features for elite gamers."
+                  price={99.99}
+                  image="product.jpg"
+                />
+              </div>
+            </section>
+
+            <section id="faq" className="mb-12">
+              <h2 className="text-4xl font-bold mb-6 text-center tracking-tight">Frequently Asked Questions</h2>
+              <FAQItem
+                question="What are the system requirements?"
+                answer="Our cheats work on Windows 10 and above with minimal hardware requirements."
+              />
+              <FAQItem
+                question="How do I receive my purchase?"
+                answer="After purchase, you'll receive a download link and activation key via email."
+              />
+              <FAQItem
+                question="Are the cheats safe to use?"
+                answer="Yes, our cheats are designed with anti-detection technology for safe use."
+              />
+              <FAQItem
+                question="What is your refund policy?"
+                answer="We offer a 30-day money-back guarantee if the product doesn't work as advertised."
+              />
+              <FAQItem
+                question="How often are cheats updated?"
+                answer="We update our cheats regularly to ensure compatibility with the latest game patches."
+              />
+            </section>
+          </main>
+
+          <footer className="bg-white/10 backdrop-blur-md py-4 shadow-sm">
+            <div className="container mx-auto px-4 flex justify-center space-x-6">
+              <a href="https://x.com/nerixcheats" target="_blank" rel="noopener noreferrer">
+                <TwitterIcon />
+              </a>
+              <a href="https://discord.gg/nerix" target="_blank" rel="noopener noreferrer">
+                <DiscordIcon />
+              </a>
+            </div>
+          </footer>
+        </div>
+      );
+    };
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
